@@ -29,11 +29,12 @@ class UserControllerTest {
         long userid = 1L;
         User user = new User();
         user.setId(userid);
-        user.setName("Mock User");
-        user.setEmail("mock@email.com");
-        user.setPassword("passwordhash");
+        user.setName("José da Silva");
+        user.setEmail("jose.silva@email.com");
+        user.setPassword("hash_qualquer");
         user.setCpf("12345678910");
 
+//        TODO teste integrado, fazer o mock do repository
         this.mockMvc.perform(get("/api/v1/users/{UserId}", userid))
                 .andDo(print())
                 .andExpect(status().isOk())
