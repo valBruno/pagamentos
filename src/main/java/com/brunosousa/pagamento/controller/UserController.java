@@ -1,6 +1,7 @@
 package com.brunosousa.pagamento.controller;
 
 import com.brunosousa.pagamento.model.User;
+import com.brunosousa.pagamento.model.dto.UserDTO;
 import com.brunosousa.pagamento.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,15 @@ public class UserController {
 
     @GetMapping("/{UserId}")
     @SuppressWarnings("unused")
-    public ResponseEntity<User> getUserById(@PathVariable Long UserId) {
+    public ResponseEntity<UserDTO> getUserById(@PathVariable Long UserId) {
         return ResponseEntity.ok(userService.getUserById(UserId));
     }
+    @GetMapping("/{UserId}/balance")
+    @SuppressWarnings("unused")
+    public ResponseEntity<String> getUserBalance(@PathVariable Long UserId) {
+
+        return ResponseEntity.ok(userService.getBalance(UserId));
+    }
+
+
 }

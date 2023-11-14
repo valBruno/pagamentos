@@ -1,7 +1,9 @@
 package com.brunosousa.pagamento.controller;
 
 import com.brunosousa.pagamento.model.User;
+import com.brunosousa.pagamento.model.Wallet;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -23,6 +25,15 @@ class UserControllerTest {
     @Autowired
     ObjectMapper objectMapper;
 
+    User user1;
+    Wallet user1Wallet;
+
+    @BeforeEach
+    void setUp() {
+        user1Wallet = new Wallet(9999L, user1, 100.0 );
+        user1 = new User(2L, "User Test Um", "email1@email.com", "senha qualquer", "000000000000", user1Wallet);
+    }
+
     @Test
     void getUser() throws Exception {
 
@@ -39,5 +50,15 @@ class UserControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json(objectMapper.writeValueAsString(user)));
+    }
+
+    @Test
+    void getUserBalance() throws Exception {
+
+//        TODO teste integrado, fazer o mock do repository
+        this.mockMvc.perform(get("/api/v1/users/{UserId}/balance", 1))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string("500.0"));
     }
 }
