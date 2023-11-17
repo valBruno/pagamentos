@@ -1,14 +1,11 @@
 package com.brunosousa.pagamento.controller;
 
-import com.brunosousa.pagamento.model.User;
 import com.brunosousa.pagamento.model.dto.UserDTO;
+import com.brunosousa.pagamento.model.form.TransferForm;
 import com.brunosousa.pagamento.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -28,6 +25,13 @@ public class UserController {
     public ResponseEntity<String> getUserBalance(@PathVariable Long UserId) {
 
         return ResponseEntity.ok(userService.getBalance(UserId));
+    }
+
+    @PostMapping("/{UserId}/transfer")
+    @SuppressWarnings("unused")
+    public ResponseEntity<String> getTransfer(@PathVariable Long UserId,@RequestBody TransferForm form) {
+
+        return ResponseEntity.ok(userService.transfer(UserId, form));
     }
 
 
