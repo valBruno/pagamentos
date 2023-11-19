@@ -2,6 +2,14 @@
 server:
   port: 8080
 
+authorization:
+#  url: https://run.mocky.io/v3/8fafdd68-a090-496f-8c9a-3442cf30dae6
+  url: https://run.mocky.io/v3/f4cfb739-7c00-4ef2-aed9-536d927d8761
+  timeoutUrl: https://run.mocky.io/v3/0fc53313-693e-4bab-a106-6d18d706565a
+
+notification:
+#  url: http://o4d9z.mocklab.io/notify
+
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
